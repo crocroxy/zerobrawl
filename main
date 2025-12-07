@@ -2921,6 +2921,457 @@ function library:Init(key)
             end
         end
         --
+        -- Add this function inside the Components table (after NewTextbox function)
+
+function Components:NewDropdown(text, options, callback)
+    text = text or "dropdown"
+    options = options or {"Option 1", "Option 2", "Option 3"}
+    callback = callback or function() end
+
+    local dropdownFrame = Instance.new("Frame")
+    local dropdownButton = Instance.new("TextButton")
+    local dropdownLayout = Instance.new("UIListLayout")
+    local dropdownLabel = Instance.new("TextLabel")
+    local dropdownLabelPadding = Instance.new("UIPadding")
+    local dropdownFolder = Instance.new("Folder")
+    local dropdownFolderLayout = Instance.new("UIListLayout")
+    local dropdownDisplay = Instance.new("TextButton")
+    local dropdownDisplayCorner = Instance.new("UICorner")
+    local dropdownDisplayBackground = Instance.new("Frame")
+    local dropdownDisplayGradient = Instance.new("UIGradient")
+    local dropdownDisplayBackCorner = Instance.new("UICorner")
+    local dropdownDisplayLabel = Instance.new("TextLabel")
+    local dropdownDisplayStraint = Instance.new("UISizeConstraint")
+    local dropdownDisplayBackgroundStraint = Instance.new("UISizeConstraint")
+    local dropdownOptionsFrame = Instance.new("Frame")
+    local dropdownOptionsCorner = Instance.new("UICorner")
+    local dropdownOptionsBackground = Instance.new("ScrollingFrame")
+    local dropdownOptionsGradient = Instance.new("UIGradient")
+    local dropdownOptionsBackCorner = Instance.new("UICorner")
+    local dropdownOptionsLayout = Instance.new("UIListLayout")
+    local dropdownOptionsPadding = Instance.new("UIPadding")
+
+    dropdownFrame.Name = "dropdownFrame"
+    dropdownFrame.Parent = page
+    dropdownFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownFrame.BackgroundTransparency = 1.000
+    dropdownFrame.ClipsDescendants = false
+    dropdownFrame.Size = UDim2.new(0, 396, 0, 24)
+    dropdownFrame.ZIndex = 2
+
+    dropdownButton.Name = "dropdownButton"
+    dropdownButton.Parent = dropdownFrame
+    dropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownButton.BackgroundTransparency = 1.000
+    dropdownButton.Size = UDim2.new(0, 396, 0, 24)
+    dropdownButton.AutoButtonColor = false
+    dropdownButton.Font = Enum.Font.SourceSans
+    dropdownButton.Text = ""
+    dropdownButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    dropdownButton.TextSize = 14.000
+    dropdownButton.ZIndex = 2
+
+    dropdownLayout.Name = "dropdownLayout"
+    dropdownLayout.Parent = dropdownButton
+    dropdownLayout.FillDirection = Enum.FillDirection.Horizontal
+    dropdownLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    dropdownLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+    dropdownLayout.Padding = UDim.new(0, 4)
+
+    dropdownLabel.Name = "dropdownLabel"
+    dropdownLabel.Parent = dropdownButton
+    dropdownLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownLabel.BackgroundTransparency = 1.000
+    dropdownLabel.Size = UDim2.new(0, 260, 0, 24)
+    dropdownLabel.Font = Enum.Font.Code
+    dropdownLabel.Text = text
+    dropdownLabel.TextColor3 = Color3.fromRGB(190, 190, 190)
+    dropdownLabel.TextSize = 14.000
+    dropdownLabel.TextWrapped = true
+    dropdownLabel.TextXAlignment = Enum.TextXAlignment.Left
+    dropdownLabel.RichText = true
+    dropdownLabel.ZIndex = 2
+
+    dropdownLabelPadding.Name = "dropdownLabelPadding"
+    dropdownLabelPadding.Parent = dropdownLabel
+    dropdownLabelPadding.PaddingBottom = UDim.new(0, 6)
+    dropdownLabelPadding.PaddingLeft = UDim.new(0, 2)
+    dropdownLabelPadding.PaddingRight = UDim.new(0, 6)
+    dropdownLabelPadding.PaddingTop = UDim.new(0, 6)
+
+    dropdownFolder.Name = "dropdownFolder"
+    dropdownFolder.Parent = dropdownFrame
+
+    dropdownFolderLayout.Name = "dropdownFolderLayout"
+    dropdownFolderLayout.Parent = dropdownFolder
+    dropdownFolderLayout.FillDirection = Enum.FillDirection.Horizontal
+    dropdownFolderLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+    dropdownFolderLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    dropdownFolderLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+    dropdownFolderLayout.Padding = UDim.new(0, 4)
+
+    dropdownDisplay.Name = "dropdownDisplay"
+    dropdownDisplay.Parent = dropdownFolder
+    dropdownDisplay.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dropdownDisplay.Position = UDim2.new(0.780303001, 0, 0, 0)
+    dropdownDisplay.Size = UDim2.new(0, 130, 0, 22)
+    dropdownDisplay.AutoButtonColor = false
+    dropdownDisplay.Font = Enum.Font.SourceSans
+    dropdownDisplay.Text = ""
+    dropdownDisplay.TextColor3 = Color3.fromRGB(0, 0, 0)
+    dropdownDisplay.TextSize = 14.000
+    dropdownDisplay.ZIndex = 2
+
+    dropdownDisplayCorner.CornerRadius = UDim.new(0, 2)
+    dropdownDisplayCorner.Name = "dropdownDisplayCorner"
+    dropdownDisplayCorner.Parent = dropdownDisplay
+
+    dropdownDisplayBackground.Name = "dropdownDisplayBackground"
+    dropdownDisplayBackground.Parent = dropdownDisplay
+    dropdownDisplayBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+    dropdownDisplayBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownDisplayBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
+    dropdownDisplayBackground.Size = UDim2.new(0, 128, 0, 20)
+    dropdownDisplayBackground.ZIndex = 2
+
+    dropdownDisplayGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(28, 28, 28))}
+    dropdownDisplayGradient.Rotation = 90
+    dropdownDisplayGradient.Name = "dropdownDisplayGradient"
+    dropdownDisplayGradient.Parent = dropdownDisplayBackground
+
+    dropdownDisplayBackCorner.CornerRadius = UDim.new(0, 2)
+    dropdownDisplayBackCorner.Name = "dropdownDisplayBackCorner"
+    dropdownDisplayBackCorner.Parent = dropdownDisplayBackground
+
+    dropdownDisplayLabel.Name = "dropdownDisplayLabel"
+    dropdownDisplayLabel.Parent = dropdownDisplayBackground
+    dropdownDisplayLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+    dropdownDisplayLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownDisplayLabel.BackgroundTransparency = 1.000
+    dropdownDisplayLabel.ClipsDescendants = true
+    dropdownDisplayLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+    dropdownDisplayLabel.Size = UDim2.new(0, 120, 0, 20)
+    dropdownDisplayLabel.Font = Enum.Font.Code
+    dropdownDisplayLabel.Text = options[1] or "Select"
+    dropdownDisplayLabel.TextColor3 = Color3.fromRGB(190, 190, 190)
+    dropdownDisplayLabel.TextSize = 14.000
+    dropdownDisplayLabel.RichText = true
+    dropdownDisplayLabel.TextTruncate = Enum.TextTruncate.AtEnd
+    dropdownDisplayLabel.ZIndex = 2
+
+    dropdownDisplayStraint.Name = "dropdownDisplayStraint"
+    dropdownDisplayStraint.Parent = dropdownDisplay
+    dropdownDisplayStraint.MinSize = Vector2.new(80, 22)
+
+    dropdownDisplayBackgroundStraint.Name = "dropdownDisplayBackgroundStraint"
+    dropdownDisplayBackgroundStraint.Parent = dropdownDisplayBackground
+    dropdownDisplayBackgroundStraint.MinSize = Vector2.new(78, 20)
+
+    -- Options Frame (hidden by default)
+    dropdownOptionsFrame.Name = "dropdownOptionsFrame"
+    dropdownOptionsFrame.Parent = dropdownFolder
+    dropdownOptionsFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dropdownOptionsFrame.Position = UDim2.new(0, 0, 1, 4)
+    dropdownOptionsFrame.Size = UDim2.new(0, 130, 0, 0)
+    dropdownOptionsFrame.Visible = false
+    dropdownOptionsFrame.ZIndex = 10
+
+    dropdownOptionsCorner.CornerRadius = UDim.new(0, 2)
+    dropdownOptionsCorner.Name = "dropdownOptionsCorner"
+    dropdownOptionsCorner.Parent = dropdownOptionsFrame
+
+    dropdownOptionsBackground.Name = "dropdownOptionsBackground"
+    dropdownOptionsBackground.Parent = dropdownOptionsFrame
+    dropdownOptionsBackground.AnchorPoint = Vector2.new(0.5, 0)
+    dropdownOptionsBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownOptionsBackground.Position = UDim2.new(0.5, 0, 0, 1)
+    dropdownOptionsBackground.Size = UDim2.new(0, 128, 0, 0)
+    dropdownOptionsBackground.BorderSizePixel = 0
+    dropdownOptionsBackground.ScrollBarThickness = 4
+    dropdownOptionsBackground.ScrollBarImageColor3 = Color3.fromRGB(159, 115, 255)
+    dropdownOptionsBackground.CanvasSize = UDim2.new(0, 0, 0, 0)
+    dropdownOptionsBackground.ZIndex = 10
+    dropdownOptionsBackground.Active = true
+
+    dropdownOptionsGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(28, 28, 28))}
+    dropdownOptionsGradient.Rotation = 90
+    dropdownOptionsGradient.Name = "dropdownOptionsGradient"
+    dropdownOptionsGradient.Parent = dropdownOptionsBackground
+
+    dropdownOptionsBackCorner.CornerRadius = UDim.new(0, 2)
+    dropdownOptionsBackCorner.Name = "dropdownOptionsBackCorner"
+    dropdownOptionsBackCorner.Parent = dropdownOptionsBackground
+
+    dropdownOptionsLayout.Name = "dropdownOptionsLayout"
+    dropdownOptionsLayout.Parent = dropdownOptionsBackground
+    dropdownOptionsLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    dropdownOptionsLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    dropdownOptionsLayout.Padding = UDim.new(0, 2)
+
+    dropdownOptionsPadding.Name = "dropdownOptionsPadding"
+    dropdownOptionsPadding.Parent = dropdownOptionsBackground
+    dropdownOptionsPadding.PaddingBottom = UDim.new(0, 4)
+    dropdownOptionsPadding.PaddingLeft = UDim.new(0, 4)
+    dropdownOptionsPadding.PaddingRight = UDim.new(0, 4)
+    dropdownOptionsPadding.PaddingTop = UDim.new(0, 4)
+
+    -- Create option buttons
+    local selectedOption = options[1] or "Select"
+    local isOpen = false
+
+    local function updateCanvasSize()
+        local contentSize = dropdownOptionsLayout.AbsoluteContentSize
+        dropdownOptionsBackground.CanvasSize = UDim2.new(0, 0, 0, contentSize.Y + 8)
+    end
+
+    local function closeDropdown()
+        isOpen = false
+        CreateTween("dropdown_close", 0.15)
+        TweenService:Create(dropdownOptionsFrame, TweenTable["dropdown_close"], {Size = UDim2.new(0, 130, 0, 0)}):Play()
+        TweenService:Create(dropdownOptionsBackground, TweenTable["dropdown_close"], {Size = UDim2.new(0, 128, 0, 0)}):Play()
+        wait(0.15)
+        dropdownOptionsFrame.Visible = false
+    end
+
+    local function openDropdown()
+        isOpen = true
+        dropdownOptionsFrame.Visible = true
+        local maxHeight = math.min(#options * 24 + 8, 120)
+        CreateTween("dropdown_open", 0.15)
+        TweenService:Create(dropdownOptionsFrame, TweenTable["dropdown_open"], {Size = UDim2.new(0, 130, 0, maxHeight + 2)}):Play()
+        TweenService:Create(dropdownOptionsBackground, TweenTable["dropdown_open"], {Size = UDim2.new(0, 128, 0, maxHeight)}):Play()
+    end
+
+    for _, option in pairs(options) do
+        local optionButton = Instance.new("TextButton")
+        local optionButtonCorner = Instance.new("UICorner")
+        local optionButtonBackground = Instance.new("Frame")
+        local optionButtonGradient = Instance.new("UIGradient")
+        local optionButtonBackCorner = Instance.new("UICorner")
+        local optionButtonLabel = Instance.new("TextLabel")
+
+        optionButton.Name = "optionButton"
+        optionButton.Parent = dropdownOptionsBackground
+        optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        optionButton.Size = UDim2.new(0, 120, 0, 22)
+        optionButton.AutoButtonColor = false
+        optionButton.Font = Enum.Font.SourceSans
+        optionButton.Text = ""
+        optionButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+        optionButton.TextSize = 14.000
+        optionButton.ZIndex = 11
+
+        optionButtonCorner.CornerRadius = UDim.new(0, 2)
+        optionButtonCorner.Name = "optionButtonCorner"
+        optionButtonCorner.Parent = optionButton
+
+        optionButtonBackground.Name = "optionButtonBackground"
+        optionButtonBackground.Parent = optionButton
+        optionButtonBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+        optionButtonBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        optionButtonBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
+        optionButtonBackground.Size = UDim2.new(0, 118, 0, 20)
+        optionButtonBackground.ZIndex = 11
+
+        optionButtonGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(28, 28, 28))}
+        optionButtonGradient.Rotation = 90
+        optionButtonGradient.Name = "optionButtonGradient"
+        optionButtonGradient.Parent = optionButtonBackground
+
+        optionButtonBackCorner.CornerRadius = UDim.new(0, 2)
+        optionButtonBackCorner.Name = "optionButtonBackCorner"
+        optionButtonBackCorner.Parent = optionButtonBackground
+
+        optionButtonLabel.Name = "optionButtonLabel"
+        optionButtonLabel.Parent = optionButtonBackground
+        optionButtonLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+        optionButtonLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        optionButtonLabel.BackgroundTransparency = 1.000
+        optionButtonLabel.ClipsDescendants = true
+        optionButtonLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+        optionButtonLabel.Size = UDim2.new(0, 118, 0, 20)
+        optionButtonLabel.Font = Enum.Font.Code
+        optionButtonLabel.Text = option
+        optionButtonLabel.TextColor3 = Color3.fromRGB(190, 190, 190)
+        optionButtonLabel.TextSize = 14.000
+        optionButtonLabel.RichText = true
+        optionButtonLabel.TextTruncate = Enum.TextTruncate.AtEnd
+        optionButtonLabel.ZIndex = 11
+
+        -- Hover effect
+        optionButton.MouseEnter:Connect(function()
+            CreateTween("dropdown_hover", 0.1)
+            TweenService:Create(optionButton, TweenTable["dropdown_hover"], {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
+            TweenService:Create(optionButtonLabel, TweenTable["dropdown_hover"], {TextColor3 = Color3.fromRGB(159, 115, 255)}):Play()
+        end)
+
+        optionButton.MouseLeave:Connect(function()
+            CreateTween("dropdown_hover", 0.1)
+            TweenService:Create(optionButton, TweenTable["dropdown_hover"], {BackgroundColor3 = Color3.fromRGB(50, 50, 50)}):Play()
+            TweenService:Create(optionButtonLabel, TweenTable["dropdown_hover"], {TextColor3 = Color3.fromRGB(190, 190, 190)}):Play()
+        end)
+
+        -- Click event
+        optionButton.MouseButton1Click:Connect(function()
+            selectedOption = option
+            dropdownDisplayLabel.Text = option
+            closeDropdown()
+            callback(option)
+        end)
+    end
+
+    updateCanvasSize()
+
+    -- Toggle dropdown
+    dropdownDisplay.MouseButton1Click:Connect(function()
+        if isOpen then
+            closeDropdown()
+        else
+            openDropdown()
+        end
+    end)
+
+    -- Hover effects for display button
+    dropdownDisplay.MouseEnter:Connect(function()
+        CreateTween("dropdown_hover", 0.1)
+        TweenService:Create(dropdownDisplay, TweenTable["dropdown_hover"], {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
+    end)
+
+    dropdownDisplay.MouseLeave:Connect(function()
+        CreateTween("dropdown_hover", 0.1)
+        TweenService:Create(dropdownDisplay, TweenTable["dropdown_hover"], {BackgroundColor3 = Color3.fromRGB(50, 50, 50)}):Play()
+    end)
+
+    UpdatePageSize()
+
+    -- Return functions
+    local DropdownFunctions = {}
+    
+    function DropdownFunctions:SetOption(option)
+        if table.find(options, option) then
+            selectedOption = option
+            dropdownDisplayLabel.Text = option
+            callback(option)
+        end
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:GetOption()
+        return selectedOption
+    end
+
+    function DropdownFunctions:SetOptions(newOptions)
+        options = newOptions
+        -- Clear existing options
+        for _, child in pairs(dropdownOptionsBackground:GetChildren()) do
+            if child:IsA("TextButton") then
+                child:Destroy()
+            end
+        end
+        
+        -- Recreate options
+        for _, option in pairs(newOptions) do
+            local optionButton = Instance.new("TextButton")
+            local optionButtonCorner = Instance.new("UICorner")
+            local optionButtonBackground = Instance.new("Frame")
+            local optionButtonGradient = Instance.new("UIGradient")
+            local optionButtonBackCorner = Instance.new("UICorner")
+            local optionButtonLabel = Instance.new("TextLabel")
+
+            optionButton.Name = "optionButton"
+            optionButton.Parent = dropdownOptionsBackground
+            optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            optionButton.Size = UDim2.new(0, 120, 0, 22)
+            optionButton.AutoButtonColor = false
+            optionButton.Font = Enum.Font.SourceSans
+            optionButton.Text = ""
+            optionButton.ZIndex = 11
+
+            optionButtonCorner.CornerRadius = UDim.new(0, 2)
+            optionButtonCorner.Parent = optionButton
+
+            optionButtonBackground.Name = "optionButtonBackground"
+            optionButtonBackground.Parent = optionButton
+            optionButtonBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+            optionButtonBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            optionButtonBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
+            optionButtonBackground.Size = UDim2.new(0, 118, 0, 20)
+            optionButtonBackground.ZIndex = 11
+
+            optionButtonGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(28, 28, 28))}
+            optionButtonGradient.Rotation = 90
+            optionButtonGradient.Parent = optionButtonBackground
+
+            optionButtonBackCorner.CornerRadius = UDim.new(0, 2)
+            optionButtonBackCorner.Parent = optionButtonBackground
+
+            optionButtonLabel.Name = "optionButtonLabel"
+            optionButtonLabel.Parent = optionButtonBackground
+            optionButtonLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+            optionButtonLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            optionButtonLabel.BackgroundTransparency = 1.000
+            optionButtonLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+            optionButtonLabel.Size = UDim2.new(0, 118, 0, 20)
+            optionButtonLabel.Font = Enum.Font.Code
+            optionButtonLabel.Text = option
+            optionButtonLabel.TextColor3 = Color3.fromRGB(190, 190, 190)
+            optionButtonLabel.TextSize = 14.000
+            optionButtonLabel.TextTruncate = Enum.TextTruncate.AtEnd
+            optionButtonLabel.ZIndex = 11
+
+            optionButton.MouseEnter:Connect(function()
+                TweenService:Create(optionButtonLabel, TweenTable["dropdown_hover"], {TextColor3 = Color3.fromRGB(159, 115, 255)}):Play()
+            end)
+
+            optionButton.MouseLeave:Connect(function()
+                TweenService:Create(optionButtonLabel, TweenTable["dropdown_hover"], {TextColor3 = Color3.fromRGB(190, 190, 190)}):Play()
+            end)
+
+            optionButton.MouseButton1Click:Connect(function()
+                selectedOption = option
+                dropdownDisplayLabel.Text = option
+                closeDropdown()
+                callback(option)
+            end)
+        end
+        
+        updateCanvasSize()
+        selectedOption = newOptions[1] or "Select"
+        dropdownDisplayLabel.Text = selectedOption
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:Text(newText)
+        dropdownLabel.Text = newText
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:Hide()
+        dropdownFrame.Visible = false
+        UpdatePageSize()
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:Show()
+        dropdownFrame.Visible = true
+        UpdatePageSize()
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:Remove()
+        dropdownFrame:Destroy()
+        UpdatePageSize()
+        return DropdownFunctions
+    end
+
+    function DropdownFunctions:SetFunction(newCallback)
+        callback = newCallback or function() end
+        return DropdownFunctions
+    end
+
+    return DropdownFunctions
+end
+
         function Components:NewSelector(text, default, list, callback)
             text = text or "selector"
             default = default or ". . ."
